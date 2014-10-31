@@ -7,8 +7,11 @@ var movieSchema = new Schema({
     id:Number,
     title: String,
     description: String,
-    duration: String    
-
+    duration: String,
+    urlImage:String,
+    genre:String,
+    format:String,
+    director:String
 });
 
 //Exportar esquema
