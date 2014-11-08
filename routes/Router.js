@@ -13,15 +13,30 @@ module.exports = function(app){
     
     //Buscar todas las movies
     listMovie = function(req, res){
-            Movie.find({}).select('id title description urlImage genre format director _id').exec(function(err, movie) {
+            Movie.find({}).select('id title urlImage -_id').exec(function(err, movie) {
             res.send(movie);
         });
 
     };
 
+  //Obtener pelicula
+    getMovie = function(req,res){
+console.log(req.params.id);
+	Movie.find({id:req.params.id}).select('id title description urlImage genre format director -_id').exec(function(error,movie){
+	if(movie!=null){
+		res.send(movie);
+	}
+	else {
+		res.send(400,'Pelicula Inexistente');
+	      }
+	})
+    };
+
 //Redireccionamiento peticiones
     app.post('/movie', createMovie);
     app.get('/movie', listMovie);
+    app.get('/movie/:id', getMovie);
 
+ 
 
 }

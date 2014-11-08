@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 //Esquema para Movie
 var movieSchema = new Schema({
-    id:Number,
+    id:String,
     title: String,
     description: String,
     duration: String,
