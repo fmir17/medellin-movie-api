@@ -12,7 +12,9 @@ var movieSchema = new Schema({
     genre:String,
     format:String,
     director:String,
-    stars:String
+    stars:String,
+    cast:String,
+    urlVideo:String
 });
 
 //Exportar esquema

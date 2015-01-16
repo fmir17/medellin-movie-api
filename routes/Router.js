@@ -2,11 +2,11 @@
 module.exports = function(app){
 
     var Movie = require('../models/movie');
-
+    var Movie = require('../models/movieCinema');
     //*Metodos para Movie*
     //crear nueva pelicula
     createMovie = function(req,res){
-        var movie = new Movie({id: req.body.id, title: req.body.title, description: req.body.description,duration :req.body.duration, urlImage :req.body.urlImage, genre: req.body.genre, format:req.body.format,director:req.body.director,stars:req.body.stars});
+        var movie = new Movie({id: req.body.id, title: req.body.title, description: req.body.description,duration :req.body.duration, urlImage :req.body.urlImage, genre: req.body.genre, format:req.body.format,director:req.body.director,stars:req.body.stars,cast:req.body.cast,urlVideo:req.body.urlVideo});
         movie.save();
         res.end();
     };
@@ -22,7 +22,7 @@ module.exports = function(app){
   //Obtener pelicula
     getMovie = function(req,res){
 console.log(req.params.id);
-	Movie.find({id:req.params.id}).select('id title description urlImage genre format director stars -_id').exec(function(error,movie){
+	Movie.find({id:req.params.id}).select('id title description urlImage genre format director stars cast urlVideo -_id').exec(function(error,movie){
 	if(movie!=null){
 		res.send(movie);
 	}
