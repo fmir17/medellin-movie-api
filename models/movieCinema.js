@@ -14,4 +14,4 @@ var movieCinemaSchema = new Schema({
 });
 
 //Exportar esquema
-module.exports = mongoose.model('movieCinema', cinemaSchema);
+module.exports = mongoose.model('movieCinema', movieCinemaSchema);
