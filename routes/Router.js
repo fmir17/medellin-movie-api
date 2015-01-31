@@ -2,7 +2,7 @@
 module.exports = function(app){
 
     var Movie = require('../models/movie');
-    var Movie = require('../models/movieCinema');
+    var MovieCinema = require('../models/movieCinema');
     //*Metodos para Movie*
     //crear nueva pelicula
     createMovie = function(req,res){

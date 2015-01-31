@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 //Esquema para MovieTheater
-var movieCinemaSchema = new Schema({
+var cinemaSchema = new Schema({
     id:String,
     company: String,
     place: String,
@@ -14,4 +14,4 @@ var movieCinemaSchema = new Schema({
 });
 
 //Exportar esquema
-module.exports = mongoose.model('movieCinema', movieCinemaSchema);
+module.exports = mongoose.model('movieCinema', cinemaSchema);
