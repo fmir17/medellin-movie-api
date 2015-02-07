@@ -34,20 +34,19 @@ module.exports = function(app){
 	//Obtener todos los cinemas
     getMovieCinema=function(req,res){
 
-	MovieCinema.find({idMovie:req.params.idMovie}).select('idPelicula cinema -_id').exec(function(error,movie){
-	if(movie!=null){
-		res.send(movie);
-	}
-	else {
-		res.send(400,'No hay cinemas para la pelicula consultada');
-	      }
-	})
-
-	};
+    console.log('Entro a función');
+	MovieCinema.find({idMovie:req.params.idMovie}).select('idMovie cinema -_id').exec(function(error,movie){
+    	if(movie!=null){
+    		res.send(movie);
+    	}
+    	else {
+    		res.send(400,'No hay cinemas para la pelicula consultada');
+    	}
+    })};
 	//Asociar pelicula a cinemas
     createMovieCinema=function(req,res){
-        var movieCinema = new MovieCinema({idPelicula: req.body.idPelicula, cinema: req.body.cinema});
-        movie.save();
+        var cinemaMovie = new MovieCinema({idMovie: req.body.idMovie, cinema: req.body.cinema});
+        cinemaMovie.save();
         res.end();
 	};
 

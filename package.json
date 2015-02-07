@@ -1,7 +1,7 @@
 {
-  "name": "miscarnesAPI",
+  "name": "medellinMovie",
   "version": "0.0.1",
-  "description": "miscarnes",
+  "description": "medellinMovie",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
