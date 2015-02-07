@@ -60,8 +60,7 @@ module.exports = function(app){
 
     //Obtiene la información asociada a una pelicula y a un cinema.
     getMovieTheater=function(req,res){
-        console.log('Entro acá');
-        MovieTheater.find({idMovie:req.body.idMovie,idCinemaMovie:req.body.idCinema}).select('idMovie idCinemaMovie idMovieTheater -_id').exec(function(error,movieTheater){
+        MovieTheater.find({idMovie:req.params.idMovie,idCinemaMovie:req.params.idCinemaMovie}).select('idMovie idCinemaMovie idMovieTheater -_id').exec(function(error,movieTheater){
             if(movieTheater!=null){
                 res.send(movieTheater);
             }
@@ -78,7 +77,7 @@ module.exports = function(app){
     app.get('/cinema/:idMovie', getMovieCinema);
     app.post('/cinema', createMovieCinema);
     app.post('/movieTheater/',createMovieTheater);
-    app.get('/movieTheater/:idMovie/:idCinema',getMovieTheater);
+    app.get('/movieTheater/:idMovie/:idCinemaMovie',getMovieTheater);
      
 
 }
