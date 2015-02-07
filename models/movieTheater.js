@@ -6,8 +6,8 @@ var mongoose = require('mongoose'),
 var movieTheaterSchema = new Schema({
     idMovie:String,
     idCinemaMovie: String,
-    idMovieTheater:[{idlocation:{address:String,city:String}},
-    				{function:{idFunction:String,schedule:String,format:String}}
+    idMovieTheater:[{description:{address:String,city:String,phoneNumber:String}},
+    				{function:{idFunction:String,schedule:String,format:String,price:String}}
     				]
 });
 

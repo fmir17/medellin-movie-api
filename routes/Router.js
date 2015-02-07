@@ -22,7 +22,7 @@ module.exports = function(app){
 
   //Obtener pelicula
     getMovie = function(req,res){
-	Movie.find({id:req.params.id}).select('id title description urlImage genre format director stars cast urlVideo -_id').exec(function(error,movie){
+	Movie.find({id:req.params.id}).select('id title description duration urlImage genre format director stars cast urlVideo -_id').exec(function(error,movie){
 	if(movie!=null){
 		res.send(movie);
 	}
@@ -77,7 +77,7 @@ module.exports = function(app){
     app.get('/movie/:id', getMovie);
     app.get('/cinema/:idMovie', getMovieCinema);
     app.post('/cinema', createMovieCinema);
-    app.post('/movieTheater/:idMovie/:idCinema',createMovieTheater);
+    app.post('/movieTheater/',createMovieTheater);
     app.get('/movieTheater/:idMovie/:idCinema',getMovieTheater);
      
 
