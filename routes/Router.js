@@ -3,6 +3,7 @@ module.exports = function(app){
 
     var Movie = require('../models/movie');
     var MovieCinema = require('../models/cinemaMovie');
+    var MovieTheater = require('../models/movieTheater');
     //*Metodos para Movie*
     //crear nueva pelicula
     createMovie = function(req,res){
@@ -33,14 +34,12 @@ module.exports = function(app){
 	
 	//Obtener todos los cinemas
     getMovieCinema=function(req,res){
-
-    console.log('Entro a función');
 	MovieCinema.find({idMovie:req.params.idMovie}).select('idMovie cinema -_id').exec(function(error,movie){
     	if(movie!=null){
     		res.send(movie);
     	}
     	else {
-    		res.send(400,'No hay cinemas para la pelicula consultada');
+    		res.send(404,'No hay cinemas para la pelicula consultada');
     	}
     })};
 	//Asociar pelicula a cinemas
@@ -50,13 +49,37 @@ module.exports = function(app){
         res.end();
 	};
 
+
+        //Asociar funciones al teatro y cinemas
+    createMovieTheater=function(req,res){
+        console.log('Entro acá 2');
+        var movieTheater = new MovieTheater({idMovie: req.body.idMovie, idCinemaMovie:req.body.idCinemaMovie,idMovieTheater: req.body.idMovieTheater});
+        movieTheater.save();
+        res.end();
+    };
+
+    //Obtiene la información asociada a una pelicula y a un cinema.
+    getMovieTheater=function(req,res){
+        console.log('Entro acá');
+        MovieTheater.find({idMovie:req.body.idMovie,idCinemaMovie:req.body.idCinema}).select('idMovie idCinemaMovie idMovieTheater -_id').exec(function(error,movieTheater){
+            if(movieTheater!=null){
+                res.send(movieTheater);
+            }
+            else{
+                res.send(404,'No hay información asociada');
+            }
+        })
+    };
+
 //Redireccionamiento peticiones
     app.post('/movie', createMovie);
     app.get('/movie', listMovie);
     app.get('/movie/:id', getMovie);
     app.get('/cinema/:idMovie', getMovieCinema);
     app.post('/cinema', createMovieCinema);
-
- 
+    app.post('/movieTheater/:idMovie/:idCinema',createMovieTheater);
+    app.get('/movieTheater/:idMovie/:idCinema',getMovieTheater);
+     
 
 }
+
