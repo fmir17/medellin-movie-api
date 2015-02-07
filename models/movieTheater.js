@@ -7,7 +7,7 @@ var movieTheaterSchema = new Schema({
     idMovie:String,
     idCinemaMovie: String,
     idMovieTheater:[{description:{address:String,city:String,phoneNumber:String}},
-    				{function:{idFunction:String,schedule:String,format:String,price:String}}
+    				{function:[{idFunction:String,schedule:String,format:String,price:String}]}
     				]
 });
 
